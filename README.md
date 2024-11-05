@@ -1,12 +1,6 @@
 # Memo_Cmd
 
 
-Docker:
- ```
-	- docker logs nom-du-conteneur
-	- docker exec -it nom-du-conteneur /bin/bash
-```
-
 - DockerFile:
 	- FROM image : Defines a base for your image
 	- RUN command:  Executes any commands in a new layer on top of the current image and commits the result. `RUN` also has a shell form for running commands.
@@ -14,19 +8,23 @@ Docker:
 	- COPY src dest : Copies new files or directories from `<src>` and adds them to the filesystem of the container at the path `<dest>`.
 	- CMD command: Lets you define the default program that is run once you start the container based on this image. Each Dockerfile only has one `CMD`, and only the last `CMD` instance is respected when multiple exist.
 
-docker build -t tagname:version .
-docker build -t tagname:version -f DockerFule ./folderTarget
-docker compose build
-
-docker run --name test -d nginx:alpine
+- Docker commands: 
+	- docker logs nom-du-conteneur
+	- docker build -t tagname:version .
+	- docker build -t tagname:version -f DockerFile ./folderTarget
+	- docker compose build
+	- docker exec -it 
+	- docker run --name test -d nginx:alpine
+	- docker exec -it  name /bin/baqh
 - Kubernetes
 	- kubectl get pods -n nom-du-namespace
 	- kubectl exec -it nom-du-pod -- /bin/bash
 	- kubectl exec -it nom-du-pod -c nom-du-conteneur -- /bin/bash
 	- kubectl logs nom-du-pod
+	- kubectl top pods --all-namespaces
 	- kubectl api-ressources
 	- kubectl explain [RESOURCE_TYPE]  NAME
-	-  kubectl explain [RESOURCE_TYPE] NAME
+	-  kubectl describe [RESOURCE_TYPE] NAME
 - Symfony:
 	- logs -> /var/logs
 	- installation symfony-cli:
@@ -45,6 +43,7 @@ docker run --name test -d nginx:alpine
 		- symfony open:local
 		- php bin/console make:controller RecipeController (Créer un controller et fichiers associés)
 		- php bin/console make:form (Créer un Form et fichiers associés)
+		- php bin/console debug:autowiring valid (Va chercher les composant/services autowiring du container symfony qui commence par le mot clé valid)
 	- Doctrine commands:
 		- php bin/console make:entity Recipe (Création d'un objet ORM Recipe)
 		- php bin/console make:migration (Création du script SQL pour générer les Tables liées aux objets ORM)
@@ -54,6 +53,10 @@ docker run --name test -d nginx:alpine
 		- dd(var)
 		- dump(var)
 			
+
+Réseau: 
+sudo ngrep -d <interface> -q 'GET|POST|PUT|DELETE' tcp and port 80
+sudo netstat -an | grep ':80\|:443'
 
 Start Php server:
 php -S localhost:8080 -t public
